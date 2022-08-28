@@ -11,54 +11,15 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-if(l1==NULL)  return l2;
-if(l2==NULL) return l1;
-    ListNode*  res=NULL;
-     ListNode* tail=NULL;
-        int carry=0;
-    while( l1 &&l2){
-        ListNode* temp= new ListNode( (l1->val+l2->val+carry)%10);
-         carry=(l1->val+l2->val+carry)/10;
-         if(res == NULL)
-         {      res = temp;
-          tail =res;
-         }
-     else
-         {
-            tail->next=temp;
-            tail=temp;
-           
-         }
-         l1 = l1->next;
-         l2 = l2->next;
+   ListNode preHead(0), *p = &preHead;
+    int extra = 0;
+    while (l1 || l2 || extra) {
+        int sum = (l1 ? l1->val : 0) + (l2 ? l2->val : 0) + extra;
+        extra = sum / 10;
+        p->next = new ListNode(sum % 10);
+        p = p->next;
+        l1 = l1 ? l1->next : l1;
+        l2 = l2 ? l2->next : l2;
     }
-if(l1 == NULL)
- {
-     while(l2)
-         {
-         ListNode* temp = new ListNode((l2->val+ carry)%10);
-         carry   = (l2->val + carry)/10;
-          tail->next=temp;
-         tail=temp;              
-         l2 = l2->next;
-        }
- } 
-if(l2 == NULL)
- {
-     while(l1)
-         {
-         ListNode* temp = new ListNode((l1->val+ carry)%10);
-         carry   = (l1->val + carry)/10;
-          tail->next=temp;
-         tail=temp;              
-         l1 = l1->next;
-        }
- }  
- if(carry > 0)
- {
-      ListNode *temp = new ListNode(carry);
-      tail->next=temp;
- } 
-        return res;
-    }
+    return preHead.next;}
 };
