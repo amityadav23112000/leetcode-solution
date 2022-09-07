@@ -7,15 +7,12 @@ public:
     }
     
     void push(int x) {
+        q2.push(x);
         while(q1.empty()==false){
             q2.push(q1.front());
             q1.pop();
         }
-        q1.push(x);
-        while(q2.empty()==false){
-            q1.push(q2.front());
-            q2.pop();
-        }
+         swap(q1,q2);
     }
     
     int pop() {
