@@ -17,7 +17,7 @@ public:
                 k+=nums[j];
                 j--;
             } else{
-                i++;j--;
+                i++;
             }
         }
         if(i==j && nums[i]<=k){
