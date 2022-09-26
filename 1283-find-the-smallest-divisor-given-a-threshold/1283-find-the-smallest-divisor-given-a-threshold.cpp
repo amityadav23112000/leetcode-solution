@@ -10,7 +10,7 @@ public:
     
     int smallestDivisor(vector<int>& nums, int H) {
          int left = 1;
-        int right = 1000000000;
+        int right = *max_element(nums.begin(),nums.end());
         while(left < right){
            int k=(left + right)/2;    
             
