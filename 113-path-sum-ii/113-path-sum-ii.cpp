@@ -1,22 +1,23 @@
 
 class Solution {
 public:
-       void sumPaths(vector<vector<int>>&res,TreeNode* root,int& targetSum,vector<int>&path,int curSum){
-        if(root==NULL)return;
-        path.push_back(root->val);
-        int newSum=curSum+root->val;
-        if(!root->left and !root->right and newSum==targetSum){
-            res.push_back(path);
+  vector<vector<int>>res;
+    vector<int>v;
+    int sum=0;
+    void helper(TreeNode* root,int target){
+        if(root==nullptr)return ;
+        v.push_back(root->val);
+        sum+=root->val;
+        if(sum==target && root->left==nullptr && root->right==nullptr )
+        { res.push_back(v);
         }
-        if(root->left)sumPaths(res,root->left,targetSum,path,newSum);
-        if(root->right) sumPaths(res,root->right,targetSum,path,newSum);
-
-        path.pop_back() ;
-    }
-    vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
-        vector<vector<int>>res;
-        vector<int>path;
-        sumPaths(res,root,targetSum,path,0);
+        helper(root->left,target);
+        helper(root->right,target);
+        v.pop_back();
+        sum-=root->val;
+     }
+    vector<vector<int>> pathSum(TreeNode* root, int target) {
+        helper(root,target);
         return res;
     }
 };
