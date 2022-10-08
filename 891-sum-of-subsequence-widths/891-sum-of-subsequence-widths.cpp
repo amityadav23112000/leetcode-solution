@@ -12,7 +12,7 @@ public:
     }
 
     for(int i=0;i<n;i++){
-        ans = ( ans + exp[i]*(nums[i] - nums[n-i-1])) %1000000007;
+        ans = ( ans + nums[i]*(exp[i] - exp[n-i-1])) %1000000007;
     }    
     return ans; 
     }
