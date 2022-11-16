@@ -13,7 +13,19 @@ class Solution {
 public:
     int countNodes(TreeNode* root) {
         if(root==NULL)return 0;
-        else 
-            return 1+countNodes(root->left)+countNodes(root->right);
+        int lh=0;
+        int rh=0;
+        TreeNode* node=root;
+         TreeNode* nodee=root;
+        while(node){
+            lh++;
+            node=node->left;
+        }
+        while(nodee){
+            rh++;
+            nodee=nodee->right;
+        }
+        if(lh==rh) return pow(2,lh)-1;
+        else return 1+countNodes(root->left)+countNodes(root->right);
     }
 };
