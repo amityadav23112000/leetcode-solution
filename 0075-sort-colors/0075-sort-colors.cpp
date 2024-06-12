@@ -1,7 +1,7 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-       int i=0;
+         int i=0;
        int j=0;
        int k=nums.size()-1;
        while(j<=k){
