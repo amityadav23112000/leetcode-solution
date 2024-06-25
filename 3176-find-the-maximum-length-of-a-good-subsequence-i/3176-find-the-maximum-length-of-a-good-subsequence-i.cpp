@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-      int dp[600][600][50];
+   int dp[501][501][50];
     int f(int i,int p,int cnt,int k,vector<int>& nums){
         if(i==nums.size()) return 0;
         if(dp[i][p+1][cnt]!=-1) return dp[i][p+1][cnt];
